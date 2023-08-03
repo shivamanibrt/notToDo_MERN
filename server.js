@@ -1,11 +1,17 @@
 import express from 'express';
-import taskRouter from "./Src/routers/taskRouter.js";
+import taskRouter from "./src/routers/taskRouter.js";
 
 const app = express();
 const Port = 8000;
+// middlewares
+
+//we cnvert the thing to json 
+app.use(express.json())
+
 
 app.use('/api/v1/task', taskRouter)
 
+//This handels the default api point
 app.use('/', (req, res) => {
     res.json({
         status: "success",//either success or error
@@ -13,10 +19,10 @@ app.use('/', (req, res) => {
     });
 })
 
+//this is to handel the error
 app.use((error, req, res, next) => {
-    // error.status = error.status || 404;
     res.json({
-        status: 'error',
+        status: 'ERROR',
         message: error.message
     });
     //writin in file system or database or send warning text message to devops team
