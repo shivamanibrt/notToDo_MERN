@@ -1,17 +1,28 @@
 import express from "express"
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.json({
-        status: "success",//either success or error
-        message: 'return from get method',
-    })
+router.get('/', (req, res, next) => {
+
+    try {
+        res.json({
+            status: "success",//either success or error
+            message: 'return from get method',
+        })
+    } catch (error) {
+        error.status = error.status || 500;
+        next(error)
+    }
 })
+
 router.post('/', (req, res) => {
-    res.json({
-        status: "success",//either success or error
-        message: 'return from post method',
-    })
-})
+    try {
+        res.json({
+            status: "success",//either success or error
+            message: 'return from post method',
+        })
+    } catch (error) {
+        console.log('Message :', error)
+    }
+});
 
 export default router; 
