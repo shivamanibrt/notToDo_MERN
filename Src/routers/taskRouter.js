@@ -9,7 +9,7 @@ let fakeDB = [
 
 router.get('/:_id?', (req, res, next) => {
     try {
-        //query the database and get all the task
+        //query the database and get all the task as url 
         const { _id } = req.params;
         let data = fakeDB;
 
@@ -30,7 +30,7 @@ router.get('/:_id?', (req, res, next) => {
 router.post('/', (req, res, next) => {
     try {
         console.log(req.body);
-        //push query to data
+        //push query to database
         fakeDB.push(req.body)
         res.json({
             status: "success",//either success or error
@@ -54,6 +54,7 @@ router.patch('/', (req, res, next) => {
 
 router.delete('/', (req, res, next) => {
     try {
+        //query the database and delete the based on id passed on body from rest 
         const _id = req.body;
 
         //db query to delete data 

@@ -5,7 +5,7 @@ const app = express();
 const Port = 8000;
 // middlewares
 
-//we cnvert the thing to json 
+//we convert the thing to json 
 app.use(express.json())
 
 

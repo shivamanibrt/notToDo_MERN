@@ -3,8 +3,10 @@ GET http://localhost:8000/
 
 # /CRUD
 
+
 ### fetch all task 
 GET http://localhost:8000/api/v1/task/
+
 
 ### add new task
 POST http://localhost:8000/api/v1/task/
@@ -19,11 +21,11 @@ Content-Type: application/json
 ### update or switch task
 PATCH  http://localhost:8000/api/v1/task
 
+
 ### delete the task
 DELETE  http://localhost:8000/api/v1/task/
 Content-Type: application/json
 
 {
     "_id":2,
-    
 }
