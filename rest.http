@@ -15,7 +15,8 @@ Content-Type: application/json
 {
     "_id":4,
     "task":"Cooding",
-    "hr":100
+    "hr":100,
+    
 }
 
 ### update or switch task
@@ -23,9 +24,9 @@ PATCH  http://localhost:8000/api/v1/task
 
 
 ### delete the task
-DELETE  http://localhost:8000/api/v1/task/
-Content-Type: application/json
+DELETE  http://localhost:8000/api/v1/task/1
+# Content-Type: application/json
 
-{
-    "_id":2,
-}
+# {
+#     "_id":4,
+# }

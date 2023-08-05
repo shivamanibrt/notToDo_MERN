@@ -52,10 +52,10 @@ router.patch('/', (req, res, next) => {
     }
 });
 
-router.delete('/', (req, res, next) => {
+router.delete('/:_id?', (req, res, next) => {
     try {
         //query the database and delete the based on id passed on body from rest 
-        const _id = req.body;
+        const { _id } = req.params;
 
         //db query to delete data 
         const filteredArg = fakeDB.filter(item => item?._id !== +_id)
