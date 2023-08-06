@@ -1,26 +1,16 @@
 import express from "express"
-import { insertTask } from "../model/task/TaskModel.js";
+import { deleteTask, getSingleTasks, getTasks, insertTask } from "../model/task/TaskModel.js";
 const router = express.Router();
 
-let fakeDB = [
-    { _id: 1, task: 'watching Tv', hr: 30 },
-    { _id: 2, task: 'Shopping', hr: 20 },
-    { _id: 3, task: 'playing ', hr: 10 }
-];
 
-router.get('/:_id?', (req, res, next) => {
+router.get('/:_id?', async (req, res, next) => {
     try {
-        //query the database and get all the task as url 
         const { _id } = req.params;
-        let data = fakeDB;
-
-        if (_id) {
-            data = fakeDB.filter((item) => item._id === +_id)
-        }
+        const result = _id ? await getSingleTasks(_id) : await getTasks();
         res.json({
             status: "success",//either success or error
             message: 'return from get method',
-            data,
+            result,
         })
     } catch (error) {
         next(error)
@@ -54,17 +44,15 @@ router.patch('/', (req, res, next) => {
     }
 });
 
-router.delete('/:_id?', (req, res, next) => {
-    try {
-        //query the database and delete the based on id passed on body from rest 
-        const { _id } = req.params;
+router.delete('/:_id?', async (req, res, next) => {
+    const { _id } = req.params;
+    const result = await deleteTask(_id);
 
-        //db query to delete data 
-        const filteredArg = fakeDB.filter(item => item?._id !== +_id)
-        fakeDB = filteredArg
+    try {
         res.json({
             status: "success",//either success or error
             message: 'return from delete method',
+            result
         })
     } catch (error) {
         next(error)

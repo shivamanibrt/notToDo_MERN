@@ -13,7 +13,7 @@ POST http://localhost:8000/api/v1/task/
 Content-Type: application/json
 
 {
-   "task":"Cooding",
+   "task":"Cooking",
     "hr":100
 }
 
@@ -22,7 +22,7 @@ PATCH  http://localhost:8000/api/v1/task
 
 
 ### delete the task
-DELETE  http://localhost:8000/api/v1/task/1
+DELETE  http://localhost:8000/api/v1/task/64cef26ea79514bd633ad9b2
 # Content-Type: application/json
 
 # {
