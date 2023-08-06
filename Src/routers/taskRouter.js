@@ -1,4 +1,5 @@
 import express from "express"
+import { insertTask } from "../model/task/TaskModel.js";
 const router = express.Router();
 
 let fakeDB = [
@@ -16,7 +17,6 @@ router.get('/:_id?', (req, res, next) => {
         if (_id) {
             data = fakeDB.filter((item) => item._id === +_id)
         }
-
         res.json({
             status: "success",//either success or error
             message: 'return from get method',
@@ -27,14 +27,16 @@ router.get('/:_id?', (req, res, next) => {
     }
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
-        console.log(req.body);
-        //push query to database
-        fakeDB.push(req.body)
+        // const result = await insertTask(req.body);
+        // console.log(result)
+        const result = await insertTask(req.body);
+        console.log(result)
         res.json({
             status: "success",//either success or error
-            message: 'return from post method',
+            message: 'todo',
+            result,
         })
     } catch (error) {
         next(error)

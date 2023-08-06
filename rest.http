@@ -13,10 +13,8 @@ POST http://localhost:8000/api/v1/task/
 Content-Type: application/json
 
 {
-    "_id":4,
-    "task":"Cooding",
-    "hr":100,
-    
+   "task":"Cooding",
+    "hr":100
 }
 
 ### update or switch task

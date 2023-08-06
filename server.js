@@ -1,13 +1,17 @@
 import express from 'express';
 import taskRouter from "./src/routers/taskRouter.js";
+import { dbConnect } from './src/config/dbConfig.js';
+
 
 const app = express();
 const Port = 8000;
 // middlewares
 
-//we convert the thing to json 
+
 app.use(express.json())
 
+//db connect 
+dbConnect();
 
 app.use('/api/v1/task', taskRouter)
 
@@ -23,9 +27,8 @@ app.use('/', (req, res) => {
 app.use((error, req, res, next) => {
     res.json({
         status: 'ERROR',
-        message: error.message
+        message: error.message,
     });
-    //writin in file system or database or send warning text message to devops team
 })
 
 app.listen(Port, (error) => {
