@@ -2,8 +2,6 @@
 GET http://localhost:8000/
 
 # /CRUD
-
-
 ### fetch all task 
 GET http://localhost:8000/api/v1/task/
 
@@ -18,13 +16,22 @@ Content-Type: application/json
 }
 
 ### update or switch task
-PATCH  http://localhost:8000/api/v1/task
+PATCH  http://localhost:8000/api/v1/task/
+Content-Type: application/json
+
+{
+    "_id":"64d005947004f74390cd5256",
+    "type":"bad"
+}
 
 
 ### delete the task
-DELETE  http://localhost:8000/api/v1/task/64cef26ea79514bd633ad9b2
-# Content-Type: application/json
+DELETE  http://localhost:8000/api/v1/task/
+Content-Type: application/json
 
-# {
-#     "_id":4,
-# }
+{
+    "ids":[
+        "64d005947004f74390cd5258",
+        "64d00640ec263ab2adf20aa9"
+    ]
+}

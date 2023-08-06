@@ -1,11 +1,16 @@
 import express from 'express';
 import taskRouter from "./src/routers/taskRouter.js";
 import { dbConnect } from './src/config/dbConfig.js';
+import helmet from "helmet";
+import cors from 'cors'
 
 const app = express();
 const Port = 8000;
 // middlewares
-app.use(express.json())
+app.use(express.json());
+app.use(helmet());
+app.use(cors());
+
 
 //db connect 
 dbConnect();

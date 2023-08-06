@@ -12,11 +12,18 @@ export const getSingleTasks = (_id) => {
     return TaskSchema.findById(_id);
 }
 //update
-export const updateTask = (_id, updatedTaskObj) => {
-    return TaskSchema.findByIdAndUpdate(_id, updatedTaskObj, { new: true });
+export const updateTask = (_id, type) => {
+    return TaskSchema.findByIdAndUpdate(_id, { type }, { new: true });
 }
 
-//delete
+//delete Single or Many
 export const deleteTask = (_id) => {
     return TaskSchema.findByIdAndRemove(_id)
+}
+export const deleteManyTask = (ids) => {
+    return TaskSchema.deleteMany({
+        _id: {
+            $in: ids
+        }
+    })
 }
