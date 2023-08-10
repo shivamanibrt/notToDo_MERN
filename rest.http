@@ -26,12 +26,12 @@ Content-Type: application/json
 
 
 ### delete the task
-DELETE  http://localhost:8000/api/v1/task/
-Content-Type: application/json
+DELETE  http://localhost:8000/api/v1/task/64d173062ed997017b98e2f5
+# Content-Type: application/json
 
-{
-    "ids":[
-        "64d005947004f74390cd5258",
-        "64d00640ec263ab2adf20aa9"
-    ]
-}
+# {
+#     "ids":[
+#         "64d005947004f74390cd5258",
+#         "64d00640ec263ab2adf20aa9"
+#     ]
+# }

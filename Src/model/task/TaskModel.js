@@ -17,13 +17,8 @@ export const updateTask = (_id, type) => {
 }
 
 //delete Single or Many
-export const deleteTask = (_id) => {
-    return TaskSchema.findByIdAndRemove(_id)
-}
 export const deleteManyTask = (ids) => {
     return TaskSchema.deleteMany({
-        _id: {
-            $in: ids
-        }
+        "_id": { $in: ids }
     })
 }

@@ -1,5 +1,5 @@
 import express from "express"
-import { deleteManyTask, deleteTask, getSingleTasks, getTasks, insertTask, updateTask } from "../model/task/TaskModel.js";
+import { deleteManyTask, getSingleTasks, getTasks, insertTask, updateTask } from "../model/task/TaskModel.js";
 const router = express.Router();
 
 
@@ -23,14 +23,13 @@ router.post('/', async (req, res, next) => {
         result?._id ? res.json({
             status: "success",//either success or error
             message: 'Task added',
-            result,
-        }) : (
+        }) :
             res.json({
-                status: "success",//either success or error
-                message: 'Task added',
+                status: "error",//either success or error
+                message: 'Error, Unable to add new task',
                 result,
-            })
-        )
+            }
+            )
     } catch (error) {
         next(error)
     }
@@ -50,9 +49,9 @@ router.patch('/', async (req, res, next) => {
     }
 });
 
-router.delete('/:_id?', async (req, res, next) => {
-    const { ids } = req.body;
-    const result = await deleteManyTask(ids);
+router.delete('/', async (req, res, next) => {
+    const { _id } = req.body;
+    const result = await deleteManyTask([_id]);
     console.log(result)
     try {
         res.json({

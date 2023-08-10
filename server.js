@@ -3,6 +3,8 @@ import taskRouter from "./src/routers/taskRouter.js";
 import { dbConnect } from './src/config/dbConfig.js';
 import helmet from "helmet";
 import cors from 'cors'
+import path from "path"
+import "dotenv/config"
 
 const app = express();
 const Port = 8000;
@@ -11,18 +13,18 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 
-
 //db connect 
 dbConnect();
 
 app.use('/api/v1/task', taskRouter)
 
+//static content serve
+const __dirname = path.resolve()
+app.use(express.static(path.join(__dirname, "/Not to do frontend/build")));
+
 //This handels the default api point
 app.use('/', (req, res) => {
-    res.json({
-        status: "success",//either success or error
-        message: 'You have reached not to do api',
-    });
+    res.sendFile(path.join(__dirName, "/Not to do frontend/build/index.html"))
 })
 
 //this is to handel the error
